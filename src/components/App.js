@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-class App extends Component {
-  render() {
+import AddTodoFormContainer from './AddTodoFormContainer'
+
+const App = () => {
     return (
       <div className="App">
-        <p>Hello World</p>
+        <AddTodoFormContainer />
       </div>
     );
-  }
 }
 
 export default App;
