@@ -32,10 +32,10 @@ describe('TodoFormContainer tests', () => {
     const mockHandleSubmit = jest.fn()
     const wrapper = mount(<AddTodoForm
                               store={store}
+                              todos={intialState}
                               handleSubmit={mockHandleSubmit}
                             />)
-
-    wrapper.find('.submit').simulate('click')
+    wrapper.find('.submit').simulate('submit')
     expect(mockHandleSubmit).toHaveBeenCalled()
   })
 

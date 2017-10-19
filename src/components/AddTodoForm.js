@@ -9,7 +9,6 @@ export default class AddTodoForm extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { todos, handleSubmit } = this.props
 
     return (
