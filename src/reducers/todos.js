@@ -1,7 +1,7 @@
 const todos = (state = [], action) => {
   switch(action.type) {
     case 'ADD_TODO':
-      return [ ...state, Object.assign({}, {text: action.text, id: action.id}) ]
+      return [ ...state, action.idea ]
     default:
       return state;
   };

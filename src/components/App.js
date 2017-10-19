@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import AddTodoForm from './AddTodoForm'
 import AddTodoFormContainer from '../containers/AddTodoFormContainer'
 import './App.css';
 

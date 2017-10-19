@@ -1,5 +1,4 @@
-export const addTodo = (text, id) => ({
+export const addTodo = (idea) => ({
   type: 'ADD_TODO',
-  text,
-  id
+  idea
 });

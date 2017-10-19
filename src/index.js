@@ -9,7 +9,7 @@ const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_
 const store = createStore(rootReducer, devTools) // this is the state inside of my store :D
 
 ReactDOM.render(
-<Provider store={store}>
+  <Provider store={store}>
   <App />
 </Provider>,
   document.getElementById('root')
