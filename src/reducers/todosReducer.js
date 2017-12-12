@@ -1,4 +1,4 @@
-const todos = (state = [], action) => {
+const todosReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_TODO':
       return [ ...state, action.idea ]
@@ -7,4 +7,4 @@ const todos = (state = [], action) => {
   };
 };
 
-export default todos;
+export default todosReducer;
