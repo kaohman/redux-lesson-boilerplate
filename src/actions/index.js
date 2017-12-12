@@ -1,4 +1,4 @@
-export const addTodo = (idea) => ({
+export const addTodo = (todo) => ({
   type: 'ADD_TODO',
-  idea
+  todo
 });

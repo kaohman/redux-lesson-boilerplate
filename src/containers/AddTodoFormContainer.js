@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 
-class AddTodoForm extends Component {
+export class AddTodoForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -14,6 +14,15 @@ class AddTodoForm extends Component {
     event.preventDefault();
     this.props.handleSubmit({...this.state, id: this.props.todos.length});
   };
+
+  printTodos = () => (
+    this.props.todos.map((todo, index) => (
+      <div key={`todo-${index}`}>
+        <p>{todo.text}</p>
+        <button>Remove</button>
+      </div>
+    ))
+  )
 
   render() {
     return (
@@ -28,16 +37,17 @@ class AddTodoForm extends Component {
                  className='submit'
           />
         </form>
+        { this.printTodos() }
       </section>
     )
   };
 };
 
-const mapStateToProps =  store => ({
+export const mapStateToProps =  store => ({
   todos: store.todos
 });
 
-const mapDispatchToProps = dispatch => ({
+export const mapDispatchToProps = dispatch => ({
   handleSubmit: idea => dispatch(addTodo(idea))
 });
 
