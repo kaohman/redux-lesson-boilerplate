@@ -12,17 +12,8 @@ export class AddTodoForm extends Component {
 
   submitForm = (event) => {
     event.preventDefault();
-    this.props.handleSubmit({...this.state, id: this.props.todos.length});
+    this.props.handleSubmit({...this.state, id: Date.now()});
   };
-
-  printTodos = () => (
-    this.props.todos.map((todo, index) => (
-      <div key={`todo-${index}`}>
-        <p>{todo.text}</p>
-        <button>Remove</button>
-      </div>
-    ))
-  )
 
   render() {
     return (
@@ -37,7 +28,6 @@ export class AddTodoForm extends Component {
                  className='submit'
           />
         </form>
-        { this.printTodos() }
       </section>
     )
   };
