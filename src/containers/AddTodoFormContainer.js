@@ -1,7 +1,8 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addTodo } from '../actions';
 
-export default class AddTodoForm extends Component {
+class AddTodoForm extends Component {
   constructor() {
     super()
     this.state = {
@@ -9,16 +10,15 @@ export default class AddTodoForm extends Component {
     };
   };
 
-  render() {
-    const { todos, handleSubmit } = this.props
+  submitForm = (event) => {
+    event.preventDefault();
+    this.props.handleSubmit({...this.state, id: this.props.todos.length});
+  };
 
+  render() {
     return (
       <section>
-        <form onSubmit= { (e) => {
-          e.preventDefault()
-          handleSubmit(Object.assign({id: todos.length}, this.state))
-        }
-        }>
+        <form onSubmit={this.submitForm}>
           <input type='text'
                  className='add-text'
                  value={this.state.text}
@@ -33,14 +33,12 @@ export default class AddTodoForm extends Component {
   };
 };
 
-export const mapStateToProps =  store => ({
+const mapStateToProps =  store => ({
   todos: store.todos
 });
 
-export const mapDispatchToProps = dispatch => ({
-  handleSubmit: idea => {
-    dispatch(addTodo(idea))}
+const mapDispatchToProps = dispatch => ({
+  handleSubmit: idea => dispatch(addTodo(idea))
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodoForm)
