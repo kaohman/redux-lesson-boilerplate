@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addTodo } from '../actions';
+import * as actions from '../actions';
 
 export class AddTodoForm extends Component {
   constructor() {
@@ -15,6 +15,23 @@ export class AddTodoForm extends Component {
     this.props.handleSubmit({...this.state, id: Date.now()});
   };
 
+  removedClicked = (event, id) => {
+    event.preventDefault();
+    this.props.handleRemove(id)
+  }
+
+  printTodos = () => {
+    const toMap = this.props.todos || []
+    return toMap.map((todo, index) => {
+      return (
+        <div key={`todo-${index}`}>
+          <p>{todo.text}</p>
+          <button onClick={(e) => this.removedClicked(e, todo.id)}>Remove</button>
+        </div>
+      )
+    })
+  }
+
   render() {
     return (
       <section>
@@ -28,6 +45,9 @@ export class AddTodoForm extends Component {
                  className='submit'
           />
         </form>
+        <div className="todos">
+          {this.printTodos()}
+        </div>
       </section>
     )
   };
@@ -38,7 +58,8 @@ export const mapStateToProps =  store => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  handleSubmit: idea => dispatch(addTodo(idea))
+  handleSubmit: todo => dispatch(actions.addTodo(todo)),
+  handleRemove: id => dispatch(actions.removeTodo(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodoForm)
