@@ -1,7 +1,11 @@
 const todosReducer = (state = [], action) => {
   switch(action.type) {
     case 'ADD_TODO':
-      return [ ...state, action.todo ]
+      return [ ...state, {text: action.text, id: action.id, completed: false}]
+    case 'TOGGLE_TODO':
+      return state.map(todo => (
+        todo.id === action.id ? {...todo, completed: !todo.completed} : todo
+      ))
     default:
       return state;
   };

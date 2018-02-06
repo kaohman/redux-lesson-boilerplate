@@ -1,4 +1,10 @@
-export const addTodo = (todo) => ({
+export const addTodo = (text, id) => ({
   type: 'ADD_TODO',
-  todo
+  text,
+  id
 });
+
+export const toggleTodo = (id) => ({
+  type: 'TOGGLE_TODO',
+  id
+})
