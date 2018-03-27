@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { addTodo, removeTodo } from '../actions'
 
-class AddTodoForm extends Component {
+export class AddTodoForm extends Component {
   constructor(props) {
     super(props)
     this.state = { text: '' }
+  }
+
+  clickSubmit = (e) => {
+    e.preventDefault()
+    this.props.handleSubmit(this.state.text, todos.length)
   }
 
   render() {
@@ -13,10 +18,7 @@ class AddTodoForm extends Component {
 
     return (
       <section>
-        <form onSubmit={  (e) => {
-              e.preventDefault()
-              handleSubmit(this.state.text, todos.length)
-        }}>
+        <form onSubmit={this.clickSubmit}>
           <input  value={this.state.text}
                   placeholder="Add A Todo"
                   onChange={(e) => this.setState({ text: e.target.value} )} />
@@ -27,12 +29,13 @@ class AddTodoForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   todos: state.todos,
 })
 
-const mapDispatchToProps = dispatch => ({
-  handleSubmit: (text, id) => dispatch(addTodo(text, id))
+export const mapDispatchToProps = dispatch => ({
+  handleSubmit: (text, id) => dispatch(addTodo(text, id)),
+  handleRemove: (id) => dispatch(removeTodo(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTodoForm)

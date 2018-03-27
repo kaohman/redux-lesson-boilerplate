@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 
 import rootReducer from '../reducers';
 import AddTodoForm from './AddTodoForm';
+import TodoList from './TodoList';
+import FilterMenu from './FilterMenu';
 import './App.css';
 
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -15,7 +17,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <h1>My Todo's</h1>
           <AddTodoForm />
+          <FilterMenu />
+          <TodoList />
         </div>
       </Provider>
     );

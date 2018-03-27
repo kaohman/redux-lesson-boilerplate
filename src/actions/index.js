@@ -19,3 +19,8 @@ export const setFilter = (filter) => ({
   type: 'SET_FILTER',
   filter
 })
+
+export const removeTodo = (id) => ({
+  type: 'REMOVE_TODO',
+  id
+})
