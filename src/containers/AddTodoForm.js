@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-
+import { addTodo } from '../actions';
+import { connect } from 'react-redux';
+ 
 class AddTodoForm extends Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = { text: '' };
   }
 
@@ -12,6 +15,7 @@ class AddTodoForm extends Component {
 
   submitForm = (e) => {
     e.preventDefault()
+    this.props.addTodoToStore(this.props.todos.length, this.state.text);
     this.setState({ text: '' });
   }
 
@@ -30,4 +34,13 @@ class AddTodoForm extends Component {
   }
 }
 
-export default AddTodoForm;
+
+const mapStateToProps = (state) => ({
+  todos: state.todos,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addTodoToStore: (id, text) => dispatch(addTodo(id, text)),
+}); 
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddTodoForm);
